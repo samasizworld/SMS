@@ -4,6 +4,7 @@ import nodemailer from 'nodemailer';
 import converter from 'json-2-csv';
 import moment from 'moment';
 import { config } from '../appConfig';
+import { compileTemplate, pdfGenerateByHtml } from '../utils/pdfGenerate';
 
 export const getAllStudents = async (req, res) => {
   try {
@@ -176,5 +177,100 @@ export const downloadStudentResultById = async (req, res) => {
     }
   } catch (err) {
     return err;
+  }
+};
+
+export const getStudentPdfInResultByStudentId = async (req, res) => {
+  try {
+    const guid = req.params.guid;
+    const sequelize = await connection();
+    const studentService = new StudentService(sequelize);
+    // sequelize way of raw query
+    const students = await studentService.executeQuery(guid);
+    const stu = students[0];
+    if (stu.results.a === null) {
+      stu.results = {};
+      return res.json(stu);
+    } else {
+      try {
+        const { firstName, results } = stu;
+        const score = results.score;
+        delete results.score;
+        const template = await compileTemplate('results', {
+          firstName,
+          results,
+          score,
+        });
+        await pdfGenerateByHtml(template);
+
+        return res.json({ message: 'Pdf Created' });
+      } catch (err) {
+        return err;
+      }
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const SendStudentPdfInEmailByStudentId = async (req, res) => {
+  try {
+    const guid = req.params.guid;
+    const sequelize = await connection();
+    const studentService = new StudentService(sequelize);
+    // sequelize way of raw query
+    const students = await studentService.executeQuery(guid);
+    const stu = students[0];
+    if (stu.results.a === null) {
+      stu.results = {};
+      return res.json({
+        message: `There is no result associated with ${stu.firstName}`,
+      });
+    } else {
+      try {
+        const { firstName, results } = stu;
+        const score = results.score;
+        delete results.score;
+        const template = await compileTemplate('results', {
+          firstName,
+          results,
+          score,
+        });
+
+        const pdf = await pdfGenerateByHtml(template);
+        const transporter = nodemailer.createTransport({
+          // service: config.serviceName,
+          host: config.hostName,
+          port: 587,
+          secure: false, // true for 465, false for other ports
+          auth: {
+            user: config.emailId, // generated ethereal user
+            pass: config.emailPassword, // generated ethereal password
+          },
+        });
+        // send mail with defined transport object
+        let info = await transporter.sendMail({
+          from: `"Results" <${config.emailId}>`, // sender address
+          to: stu.email, // list of receivers
+          subject: `Result`, // Subject line
+          text: `Hi,${stu.firstName}`, // plain text body
+          attachments: [
+            {
+              filename: `Result-${stu.firstName}-${moment().format(
+                'HH:mm:ss YYYY'
+              )}.pdf`,
+              content: Buffer.from(pdf, 'utf-8'),
+              contentType: 'text/pdf',
+            },
+          ],
+        });
+        console.log('Message sent: %s', info.messageId);
+        return res.json({ message: `Mail Sent to ${stu.email}` });
+      } catch (err) {
+        return err;
+      }
+    }
+  } catch (err) {
+    throw err;
   }
 };

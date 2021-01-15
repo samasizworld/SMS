@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<h1 style="text-align: center;">Result</h1>
+<ul style="text-align: center;">
+    <li style="text-decoration: none; list-style: none;">Name:{{firstName}}</li>
+</ul>
+<table class="table" style="width:auto; position: relative; top:50%;left:50%; transform: translate(-50%, -50%);">
+    <thead class="thead-dark">
+        <th scope='col'>SN</th>
+        <th scope="col">SubjectName</th>
+        <th scope="col">Marks Obtained</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#each results as |value key|}}
+        <tr>
+            <th scope="row">{{findIndex key}}</th>
+            <td>{{key}}</th>
+            <td>{{value}}</td>
+        </tr>
+        {{/each}}
+
+
+        <tr>
+            <th scope="row">Rank</th>
+            <td>{{score}}</td>
+        </tr>
+    </tbody>
+
+</table>
+
+</html>

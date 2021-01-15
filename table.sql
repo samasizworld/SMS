@@ -180,13 +180,13 @@ language plpgsql;
 
 
 select stu.guid ,stu.studentemail,stu.firstname,(json_object_agg(coalesce(sub.subjectname,'a'), stusub.marks)::jsonb || json_object_agg('score',stu.result)::jsonb )::json from 
-    (select studentid,firstname ,guid ,result,studentemail from students where datedeleted is null and guid = '0cd95bee-55b0-11eb-88ab-d38d5071f639' ) as stu
+    (select studentid,firstname ,guid ,result,studentemail from students where datedeleted is null) as stu
     left join (studentsubjects as stusub  inner join subjects as sub on sub.subjectid =stusub.subjectid and stusub.datedeleted is null ) 
     on stu.studentid = stusub.studentid
     GROUP BY stu.guid,stu.firstname,stu.studentemail;
 -- get student result
 create or replace function getstudentresult(uuid) returns json as
-$$
+$$ 
 declare
     "studentId" uuid;
     first_name varchar(100);
@@ -434,8 +434,12 @@ execute procedure students();
 create or replace function students() returns trigger as 
 $$
 begin
-    if TG_OP ='UPDATE' then
+    if TG_OP ='UPDATE' then 
+    -- if there is value in datedeleted do  update
+        if new.datedeleted is not null then 
         update studentsubjects set datedeleted = now() where studentid = new.studentid and datedeleted is null;
+        return new;
+        end if;
         return new;
     elsif TG_OP ='DELETE' then
         delete from studentsubjects where studentid=old.studentid;
@@ -457,7 +461,10 @@ create or replace function subjects() returns trigger as
 $$
 begin
     if TG_OP ='UPDATE' then
+        if new.datedeleted is not null then
         update studentsubjects set datedeleted = now() where subjectid = new.subjectid and datedeleted is null;
+        return new;
+        end if;
         return new;
     elsif TG_OP ='DELETE' then
         delete from studentsubjects where subjectid=old.subjectid;
@@ -495,11 +502,11 @@ begin
         percent:=(total_marks/total_linked_subjects); 
         if percent>=80 then
             score:='Distinction';
-        elsif percent between 60 and 80 then
+        elsif percent >= 60 and percent<80 then
             score:='First Division';
-        elsif percent between 50 and 60 then
+        elsif percent >= 50 and percent<60 then
             score:='Second Division';
-        elsif percent between 40 and 50 then
+        elsif percent >= 40 and percent<50 then
             score:='Third Division';
         else
             score:='Fail';
@@ -512,11 +519,11 @@ begin
         percent:=(total_marks/total_linked_subjects);
         if percent>=80 then
             score:='Distinction';
-        elsif percent between 60 and 80 then
+        elsif percent >= 60 and percent<80 then
             score:='First Division';
-        elsif percent between 50 and 60 then
+        elsif percent >= 50 and percent<60 then
             score:='Second Division';
-        elsif percent between 40 and 50  then
+        elsif percent >= 40 and percent<50 then
             score:='Third Division';
         else
             score:='Fail';

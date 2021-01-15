@@ -9,7 +9,7 @@ export const loginUser = async (req, res) => {
   // const { username, password } = req.body;
   // const encryptedCredential = generateToken(username, password);
   // console.log(encryptedCredential);
-  // res.setHeader('Authorization', `Basic ${encryptedCredential}`);
+  // req.setHeader('Authorization', `Basic ${encryptedCredential}`);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Basic')
