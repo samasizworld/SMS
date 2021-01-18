@@ -1,6 +1,8 @@
 import { GenericService } from '../GenericService';
 import { Repository } from '../../repo/Repository';
 import { QueryTypes } from 'sequelize';
+import * as log from '../../utils/logger';
+
 export class StudentSubjectService<T> extends GenericService<T> {
   constructor(sequelize) {
     super(new Repository(sequelize));
@@ -14,6 +16,12 @@ export class StudentSubjectService<T> extends GenericService<T> {
       );
       return result;
     } catch (err) {
+      log.error(
+        'Error while linking studentsubject',
+        '/linkstudentsubject',
+        err,
+        null
+      );
       return err;
     }
   }

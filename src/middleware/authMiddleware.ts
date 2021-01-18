@@ -2,10 +2,11 @@ import { connection } from '../common/connection';
 import { UserLoginInfoService } from '../services/modelServices/userlogininfoService';
 import { isGuid, calculateTotalSeconds } from '../utils/helper';
 import moment from 'moment';
+import * as log from '../utils/logger';
 
 export const auth = async (req, res, next) => {
   var authentication: string = req.get('Authorization');
-  var authExpireTime = 1;
+  // var authExpireTime = 1;
   authentication = authentication.replace('"', '').replace('"', '');
   var authString = authentication.split('=')[0];
   var authKey = authentication.split('=')[1];
@@ -38,25 +39,40 @@ export const auth = async (req, res, next) => {
           const diff = secOfcurrentTime - secOfloggedindatetime;
           if (diff >= 120 * 60) {
             res.json({ message: 'Token expires' });
+            log.error(
+              'Token expires',
+              'Error at AuthMiddleware()',
+              null,
+              userlogininfo.userid
+            );
             return;
           } else {
             const updatedUserLoginInfo = await userlogininfoService.updateAuthKeyValidity(
               userlogininfo
             );
-
             req.loginUserInfo = updatedUserLoginInfo;
+            log.info('Authorized', '/auth', null, req.loginUserInfo.userid);
             next();
           }
         } else {
           res.json({ message: 'Token may be already expired' });
+          log.error(
+            'Token may be expired',
+            '/Unauthorized',
+            null,
+            userlogininfo.userid
+          );
         }
       } catch (err) {
-        throw err;
+        log.error(err.message, '/auth', err.stack, null);
+        return err;
       }
     } else {
       res.json({ message: 'Invalid Auth String' });
+      log.error('Invalid auth string', '/auth', null, null);
     }
   } else {
     res.json({ err: 'Not authorized' });
+    log.error('No authorized', '/auth', null, null);
   }
 };

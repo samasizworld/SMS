@@ -1,6 +1,8 @@
 import { GenericService } from '../GenericService';
 import { Repository } from '../../repo/Repository';
 import { MergeModel } from '../../models/modelAssociation';
+import * as log from '../../utils/logger';
+
 export class SubjectService<T> extends GenericService<T> {
   protected sequelize;
   private Student;
@@ -16,6 +18,12 @@ export class SubjectService<T> extends GenericService<T> {
       const info = await this.insert(data);
       return info;
     } catch (err) {
+      log.error(
+        'Error while inserting data in subjectservice',
+        '/insersubject',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -25,6 +33,12 @@ export class SubjectService<T> extends GenericService<T> {
       const info = await this.update(data, where);
       return info;
     } catch (err) {
+      log.error(
+        'Error while updating data in subjectservice',
+        '/updatesubject',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -33,6 +47,12 @@ export class SubjectService<T> extends GenericService<T> {
       const info = await this.loadOne(guid, this.Student);
       return info;
     } catch (err) {
+      log.error(
+        'Error while getting data by in subjectservice',
+        '/getsubjectbyid',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -46,6 +66,12 @@ export class SubjectService<T> extends GenericService<T> {
         null
       );
     } catch (err) {
+      log.error(
+        'Error while getting all subject data in subjectservice',
+        '/getallsubject',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -55,6 +81,12 @@ export class SubjectService<T> extends GenericService<T> {
       const info = await this.delete(guid);
       return info;
     } catch (err) {
+      log.error(
+        'Error while deleting data in subjectservice',
+        '/deletesubject',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -67,6 +99,12 @@ export class SubjectService<T> extends GenericService<T> {
       });
       return subjects;
     } catch (err) {
+      log.error(
+        'Error while getting data by subjectname in subjectservice',
+        '/getsubjectbyname',
+        err,
+        null
+      );
       return err;
     }
   }

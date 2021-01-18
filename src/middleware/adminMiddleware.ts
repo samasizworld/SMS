@@ -1,5 +1,6 @@
 import { connection } from '../common/connection';
 import { UserService } from '../services/modelServices/userService';
+import * as log from '../utils/logger';
 export const admin = async (req, res, next) => {
   try {
     const sequelize = await connection();
@@ -8,9 +9,10 @@ export const admin = async (req, res, next) => {
     if (user.userrole === 'admin') {
       next();
     } else {
-      res.json({ error: 'No admin ,No authorized' });
+      log.error('Not an Admin', '/admin', null, user.userid);
+      return res.json({ error: 'No admin ,No authorized' });
     }
   } catch (err) {
-    return err;
+    log.error(err.message, '/admin', err.stack, null);
   }
 };

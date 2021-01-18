@@ -4,6 +4,7 @@ import { HashPassword } from '../utils/helper';
 //import { generateToken } from '../utils/generateToken';
 const dateTime = require('node-datetime');
 import { UserLoginInfoService } from '../services/modelServices/userlogininfoService';
+import * as log from '../utils/logger';
 
 export const loginUser = async (req, res) => {
   // const { username, password } = req.body;
@@ -46,24 +47,29 @@ export const loginUser = async (req, res) => {
               }
             );
             if (result) {
+              log.info('LoginSuccessful', '/login', null, result.userid);
               res.json({ message: 'Login Successful', tokenid: result.guid });
             }
             // } else {
             //   res.json({ message: 'Already log in' });
             // }
           } else {
+            log.error('Invalid Credentials', '/login', null, user.userid);
             res.json({ message: 'Invalid Credentials' });
           }
         } catch (err) {
+          log.error(err.message, '/login', err.stack, null);
           throw err;
         }
       } else {
         return;
       }
     } catch (err) {
+      log.error(err.message, '/login', err.stack, null);
       throw err;
     }
   } else {
+    log.error('No Authorized', '/login', null, null);
     res.json({ error: 'No Authorized user' });
   }
 };
@@ -74,9 +80,11 @@ export const logout = async (req, res) => {
     const userloginInfoService = new UserLoginInfoService(sequelize);
     const updatedResult = userloginInfoService.logout(req.loginUserInfo);
     if (updatedResult) {
+      log.info('LogoutSuccessfully', '/logout', null, req.loginUserInfo.userid);
       res.json({ message: 'Logout Sucessfully' });
     }
   } catch (err) {
+    log.error(err.message, '/logout', err.stack, null);
     return err;
   }
 };

@@ -1,4 +1,5 @@
 import { Irepo } from '../repo/Irepo';
+
 export class GenericService<T> {
   private repository: Irepo<T>; // repository obj i.e.(obj of method) can be used in inherited class
   constructor(repository: Irepo<T>) {

@@ -1,6 +1,8 @@
 import { User } from '../../models/userModel';
 import { Repository } from '../../repo/Repository';
 import { GenericService } from '../GenericService';
+import * as log from '../../utils/logger';
+
 export class UserService<T> extends GenericService<T> {
   constructor(sequelize) {
     const user = new User().UserModel(sequelize);
@@ -14,6 +16,12 @@ export class UserService<T> extends GenericService<T> {
       });
       return user;
     } catch (err) {
+      log.error(
+        'Error while getting userinfo by username in userservice',
+        '/getuserinfo',
+        err,
+        null
+      );
       return err;
     }
   }

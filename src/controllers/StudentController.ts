@@ -5,6 +5,7 @@ import converter from 'json-2-csv';
 import moment from 'moment';
 import { config } from '../appConfig';
 import { compileTemplate, pdfGenerateByHtml } from '../utils/pdfGenerate';
+import * as log from '../utils/logger';
 
 export const getAllStudents = async (req, res) => {
   try {
@@ -15,12 +16,30 @@ export const getAllStudents = async (req, res) => {
       const pN = parseInt(req.query.pageNumber);
       const pS = parseInt(req.query.pageSize);
       const students = await studentService.getAllStudents(pN, pS);
+      log.info(
+        'Students Data fetched with pageNo and pageSize',
+        '/getallstudents',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json(students);
     } else {
       const students = await studentService.getAllStudents(null, null);
+      log.info(
+        'Students Data fetched with no pageNo and no pageSize',
+        '/getallstudents',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json(students);
     }
   } catch (err) {
+    log.error(
+      'Error while fetching students data',
+      '/getallstudents',
+      err,
+      null
+    );
     return err;
   }
 };
@@ -30,8 +49,15 @@ export const getStudentById = async (req, res) => {
     const sequelize = await connection();
     const studentService = new StudentService(sequelize);
     const stu = await studentService.getOneStudentbyId(req.params.guid);
+    log.info(
+      'Student Data fetched by id',
+      '/getstudentbyid',
+      null,
+      req.loginUserInfo.userid
+    );
     return res.json(stu);
   } catch (err) {
+    log.error('Error while getting studentby id', '/getstudentbyid', err, null);
     return err;
   }
 };
@@ -48,11 +74,24 @@ export const createNewStudent = async (req, res) => {
         lastname,
         address,
       });
+      log.info(
+        'Student Created',
+        '/createStudent',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json({ message: 'Created', createdStudent });
     } else {
+      log.info(
+        'Student already there with same name',
+        '/createStudent',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json({ message: 'Already Created with same firstname' });
     }
   } catch (err) {
+    log.error(err.message, '/createnewstudent', err.stack, null);
     return err;
   }
 };
@@ -80,6 +119,7 @@ export const deleteStudent = async (req, res) => {
     await studentService.deleteStudent(req.params.guid); //return row affected
     return res.json({ message: 'Student Data deleted' });
   } catch (err) {
+    log.error(err.message, '/deletestudent', err.stack, null);
     return err;
   }
 };
@@ -94,12 +134,25 @@ export const getResultByStudentId = async (req, res) => {
     const stu = students[0];
     if (stu.results.a === null) {
       stu.results = {};
+      log.info(
+        'student Details found by id with no result',
+        '/getresultbystudentid',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json(stu);
     } else {
+      log.info(
+        'student Details found by id with result',
+        '/getresultbystudentid',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json(stu);
     }
   } catch (err) {
-    throw err;
+    log.error(err.message, '/getresultbystudentid', err.stack, null);
+    return err;
   }
 };
 
@@ -113,6 +166,12 @@ export const sendStudentResultsToMail = async (req, res) => {
     const stu = students[0];
     if (stu.results.a === null) {
       stu.results = {};
+      log.error(
+        'No result found',
+        '/sendstudentresulttomail',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json({ err: 'No Result Found' });
     } else {
       const position = stu.results.score;
@@ -147,9 +206,16 @@ export const sendStudentResultsToMail = async (req, res) => {
         ],
       });
       console.log('Message sent: %s', info.messageId);
+      log.info(
+        'Message Sent',
+        '/sendstudentresult',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json({ message: `Mail Sent to ${stu.email}` });
     }
   } catch (err) {
+    log.error(err.message, '/sendstudentresultscsvTomail', err.stack, null);
     throw err;
   }
 };
@@ -223,6 +289,12 @@ export const SendStudentPdfInEmailByStudentId = async (req, res) => {
     const stu = students[0];
     if (stu.results.a === null) {
       stu.results = {};
+      log.info(
+        'No result found',
+        '/sendstudentpdfinemailbystudentid',
+        null,
+        req.loginUserInfo.userid
+      );
       return res.json({
         message: `There is no result associated with ${stu.firstName}`,
       });
@@ -257,7 +329,7 @@ export const SendStudentPdfInEmailByStudentId = async (req, res) => {
           attachments: [
             {
               filename: `Result-${stu.firstName}-${moment().format(
-                'HH:mm:ss YYYY'
+                'HHmmssYYYYmmddss'
               )}.pdf`,
               content: Buffer.from(pdf, 'utf-8'),
               contentType: 'text/pdf',
@@ -265,12 +337,20 @@ export const SendStudentPdfInEmailByStudentId = async (req, res) => {
           ],
         });
         console.log('Message sent: %s', info.messageId);
+        log.info(
+          'Mail sent',
+          '/sendstudentresultpdfTomail',
+          null,
+          req.loginUserInfo.userid
+        );
         return res.json({ message: `Mail Sent to ${stu.email}` });
       } catch (err) {
+        log.error(err.message, '/sendstudentresultpdftomail', err.stack, null);
         return err;
       }
     }
   } catch (err) {
-    throw err;
+    log.error(err.message, '/sendstudentresultpdfbystudentid', err.stack, null);
+    return err;
   }
 };

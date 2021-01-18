@@ -16,17 +16,24 @@ import {
 import { admin } from '../middleware/adminMiddleware';
 import { auth } from '../middleware/authMiddleware';
 import { linkStudentSubject } from '../controllers/stusubController';
-router.route('/').post(auth, admin, createNewStudent).get(getAllStudents);
+
+// route
+router.route('/').post(auth, admin, createNewStudent).get(auth, getAllStudents);
 router
   .route('/:guid')
-  .get(getStudentById)
-  .put(updateStudent)
-  .delete(deleteStudent);
+  .get(auth, getStudentById)
+  .put(auth, admin, updateStudent)
+  .delete(auth, admin, deleteStudent);
 
-router.route('/:guid/result').get(getResultByStudentId);
-router.route('/:guid/sendemail').get(sendStudentResultsToMail);
-router.route('/:guid/managesubject').put(linkStudentSubject);
-router.route('/:guid/result/download').get(downloadStudentResultById);
-router.route('/:guid/getpdf').get(getStudentPdfInResultByStudentId);
-router.route('/:guid/pdf/send').get(SendStudentPdfInEmailByStudentId);
+router.route('/:guid/result').get(auth, getResultByStudentId);
+router.route('/:guid/sendemail').get(auth, admin, sendStudentResultsToMail);
+router.route('/:guid/managesubject').put(auth, admin, linkStudentSubject);
+router.route('/:guid/result/download').get(auth, downloadStudentResultById);
+router
+  .route('/:guid/getpdf')
+  .get(auth, admin, getStudentPdfInResultByStudentId);
+router
+  .route('/:guid/pdf/send')
+  .get(auth, admin, SendStudentPdfInEmailByStudentId);
+
 export default router;

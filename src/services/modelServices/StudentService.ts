@@ -2,10 +2,12 @@ import { GenericService } from '../GenericService';
 import { Repository } from '../../repo/Repository';
 import { MergeModel } from '../../models/modelAssociation';
 import { QueryTypes } from 'sequelize';
+import * as log from '../../utils/logger';
+
 export class StudentService<T> extends GenericService<T> {
   protected sequelize: any;
   private Subject: any;
-  constructor(sequelize) {
+  constructor(sequelize:any) {
     // imported for eager loading
     const { stu, sub } = new MergeModel(sequelize);
     super(new Repository(stu)); // we can use all method from parent class
@@ -23,17 +25,33 @@ export class StudentService<T> extends GenericService<T> {
       );
       return students;
     } catch (err) {
+      log.error(
+        'Error while executing query in studentservice',
+        '/executeQuery',
+        err,
+        null
+      );
       return err;
     }
   }
   async getAllStudents(pN, pS) {
-    const students = await this.loadAll(
-      this.Subject,
-      [['firstname', 'ASC']],
-      pN,
-      pS
-    );
-    return students;
+    try {
+      const students = await this.loadAll(
+        this.Subject,
+        [['firstname', 'ASC']],
+        pN,
+        pS
+      );
+      return students;
+    } catch (err) {
+      log.error(
+        'Error while executing getallstudents in studentservice',
+        '/getallstudents',
+        err,
+        null
+      );
+      return err;
+    }
   }
 
   async getOneStudentbyId(guid) {
@@ -41,26 +59,72 @@ export class StudentService<T> extends GenericService<T> {
       const student = await this.loadOne(guid, this.Subject);
       return student;
     } catch (err) {
+      log.error(
+        'Error while executing getstudentbyid in studentservice',
+        '/getstudentbyid',
+        err,
+        null
+      );
       return err;
     }
   }
 
   async insertStudent(data) {
-    const info = await this.insert(data);
-    return info;
+    try {
+      const info = await this.insert(data);
+      return info;
+    } catch (err) {
+      log.error(
+        'Error while inserting in studentservice',
+        '/insertStudent',
+        err,
+        null
+      );
+      return err;
+    }
   }
   async getStudentDetails(firstname) {
-    const where = { datedeleted: null, firstname: firstname };
-    const info = await this.loadResultByAny(where);
-    return info;
+    try {
+      const where = { datedeleted: null, firstname: firstname };
+      const info = await this.loadResultByAny(where);
+      return info;
+    } catch (err) {
+      log.error(
+        'Error while getting studentdetails in studentservice',
+        '/insertStudent',
+        err,
+        null
+      );
+      return err;
+    }
   }
   async updateStudent(data, guid) {
-    const where = { datedeleted: null, guid: guid };
-    const info = await this.update(data, where);
-    return info;
+    try {
+      const where = { datedeleted: null, guid: guid };
+      const info = await this.update(data, where);
+      return info;
+    } catch (err) {
+      log.error(
+        'Error while updatestudent in studentservice',
+        '/updatestudents',
+        err,
+        null
+      );
+      return err;
+    }
   }
 
   async deleteStudent(guid) {
-    return await this.delete(guid);
+    try {
+      return await this.delete(guid);
+    } catch (err) {
+      log.error(
+        'Error while deletestudent in studentservice',
+        '/deleteStudent',
+        err,
+        null
+      );
+      return err;
+    }
   }
 }

@@ -62,6 +62,19 @@ create table userlogininfos(
     PRIMARY KEY (userlogininfoid)
 );
 
+create table loginfos(
+    loginfoid serial primary key,
+    guid UUID DEFAULT uuid_generate_v1(),
+    severity char(1),
+    processname varchar(255),
+    message varchar(255),
+    description varchar(500),
+    additionaldetails text,
+    datecreated TIMESTAMPTZ DEFAULT now(),
+    datemodified TIMESTAMPTZ,
+    datedeleted TIMESTAMPTZ,
+    userid int REFERENCES users (userid)
+);
 /*Extra SQL functions*/
 -- add some column in existing table
 ALTER TABLE studentsubjects

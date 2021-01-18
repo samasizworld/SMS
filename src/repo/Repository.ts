@@ -1,4 +1,6 @@
 import { Irepo } from './Irepo';
+import * as log from '../utils/logger';
+
 export class Repository<T> implements Irepo<T> {
   private dbsequelize: any;
   constructor(sequelize) {
@@ -12,6 +14,7 @@ export class Repository<T> implements Irepo<T> {
       });
       return result;
     } catch (err) {
+      log.error(err.message, '/loadByUUId at repo', err.stack, null);
       return err;
     }
   }
@@ -21,6 +24,7 @@ export class Repository<T> implements Irepo<T> {
       const results = await this.dbsequelize.query(queryString, queryTypes);
       return results;
     } catch (err) {
+      log.error(err.message, '/executeQuery at repo', err.stack, null);
       return err;
     }
   }
@@ -30,6 +34,7 @@ export class Repository<T> implements Irepo<T> {
       const result = await this.dbsequelize.findOne({ where: whereClause });
       return result;
     } catch (err) {
+      log.error(err.message, '/loadResultbyAny at repo', err.stack, null);
       return err;
     }
   }
@@ -40,6 +45,12 @@ export class Repository<T> implements Irepo<T> {
       const result = await this.dbsequelize.create(data);
       return result;
     } catch (err) {
+      log.error(
+        JSON.stringify(err.message),
+        '/insert at repo',
+        JSON.stringify(err.stack),
+        null
+      );
       return err;
     }
   }
@@ -53,6 +64,7 @@ export class Repository<T> implements Irepo<T> {
       const result = await this.loadResultByAny(whereClause);
       return result;
     } catch (err) {
+      log.error(err.message, '/update at repo', err.stack, null);
       return err;
     }
   }
@@ -65,6 +77,7 @@ export class Repository<T> implements Irepo<T> {
         where: { datedeleted: null, guid: guid },
       });
     } catch (err) {
+      log.error(err.message, '/delete at repo', err.stack, null);
       return err;
     }
   }
@@ -89,6 +102,7 @@ export class Repository<T> implements Irepo<T> {
         });
         return results;
       } catch (err) {
+        log.error(err.message, '/loadAll at repo', err.stack, null);
         return err;
       }
     } else {
@@ -108,6 +122,12 @@ export class Repository<T> implements Irepo<T> {
         });
         return results;
       } catch (err) {
+        log.error(
+          err.message,
+          '/loadAll at repo',
+          JSON.stringify(err.stack),
+          null
+        );
         return err;
       }
     }
@@ -129,6 +149,7 @@ export class Repository<T> implements Irepo<T> {
       });
       return result;
     } catch (err) {
+      log.error(err.message, '/loadOneByGuid at repo', err.stack, null);
       return err;
     }
   }

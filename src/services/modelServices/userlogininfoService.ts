@@ -2,6 +2,9 @@ import { GenericService } from '../GenericService';
 import { UserLoginInfo } from '../../models/userLoginInfoModel';
 import { Repository } from '../../repo/Repository';
 const dateTime = require('node-datetime');
+
+import * as log from '../../utils/logger';
+
 export class UserLoginInfoService<T> extends GenericService<T> {
   constructor(sequelize) {
     const userLoginInfo = new UserLoginInfo().UserLoginInfoModel(sequelize);
@@ -13,6 +16,12 @@ export class UserLoginInfoService<T> extends GenericService<T> {
       const userLoginDetails = await this.insert(data);
       return userLoginDetails;
     } catch (err) {
+      log.error(
+        'Error while inserting into userlogininfo in userlogininfoservic',
+        '/insertuserlogininfo',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -26,6 +35,12 @@ export class UserLoginInfoService<T> extends GenericService<T> {
       });
       return userLoginDetail;
     } catch (err) {
+      log.error(
+        'Error while getting userlogininfo by guid in userlogininfoservic',
+        '/getuserlogininfobyguid',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -38,6 +53,12 @@ export class UserLoginInfoService<T> extends GenericService<T> {
       });
       return userLoginDetail;
     } catch (err) {
+      log.error(
+        'Error while getting  userlogininfoby username in userlogininfoservic',
+        '/getuserlogininfobyusername',
+        err,
+        null
+      );
       return err;
     }
   }
@@ -57,6 +78,12 @@ export class UserLoginInfoService<T> extends GenericService<T> {
 
       return loginInfo;
     } catch (error) {
+      log.error(
+        'Error while updatinglogging datetime into userlogininfo in userlogininfoservic',
+        '/updateuserlogininfologgeddate',
+        error,
+        null
+      );
       return error;
     }
   }
@@ -73,6 +100,12 @@ export class UserLoginInfoService<T> extends GenericService<T> {
 
       return loginInfoAfterUpdate;
     } catch (error) {
+      log.error(
+        'Error while logged out into userlogininfo in userlogininfoservic',
+        '/logout',
+        error,
+        null
+      );
       return error;
     }
   }

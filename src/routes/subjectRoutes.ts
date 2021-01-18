@@ -8,10 +8,15 @@ import {
   getAllSubjects,
   getSubjectById,
 } from '../controllers/subjectController';
-router.route('/').post(insertSubject).get(getAllSubjects);
+import { auth } from '../middleware/authMiddleware';
+import { admin } from '../middleware/adminMiddleware';
+
+//routes
+router.route('/').post(auth, admin, insertSubject).get(auth, getAllSubjects);
 router
   .route('/:guid')
-  .put(updateSubject)
-  .delete(delSubject)
-  .get(getSubjectById);
+  .put(auth, admin, updateSubject)
+  .delete(auth, admin, delSubject)
+  .get(auth, getSubjectById);
+
 export default router;
