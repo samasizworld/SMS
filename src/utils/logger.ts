@@ -40,11 +40,11 @@ const Log = async (
     const loginfoService = new LogInfoService(sequelize);
     const createClause = {
       processname: 'sms',
-      description: description,
+      description: JSON.stringify(description),
       message: message,
       userid: userid,
       severity: severity,
-      additionaldetails: additionaldetails,
+      additionaldetails: JSON.stringify(additionaldetails),
     };
     const loginfo = await loginfoService.insertloginfo(createClause);
     return loginfo;
@@ -59,7 +59,11 @@ const FileLog = async (
   userid: number,
   severity: string
 ) => {
-  var logFilePath = path.join(__dirname, 'log', `${'logger_logs.log'}`);
+  var logFilePath = path.join(
+    __dirname,
+    'log',
+    `${`logger-${moment().format('YYYYMMDD')}_logs.log`}`
+  );
   var logText =
     'UserId: ' +
     userid +

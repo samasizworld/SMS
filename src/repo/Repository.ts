@@ -24,7 +24,12 @@ export class Repository<T> implements Irepo<T> {
       const results = await this.dbsequelize.query(queryString, queryTypes);
       return results;
     } catch (err) {
-      log.error(err.message, '/executeQuery at repo', err.stack, null);
+      log.error(
+        JSON.stringify(err.message),
+        '/executeQuery at repo',
+        JSON.stringify(err.stack),
+        null
+      );
       return err;
     }
   }

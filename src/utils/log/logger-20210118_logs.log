@@ -1,0 +1,106 @@
+UserId: 3, Time: 2021-01-18 18:15:45, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 18:15:46, Severity: I, Desc: Student already there with same name, 
+Msg:
+/createStudent,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 18:35:29, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 18:35:30, Severity: I, Desc: Students Data fetched with pageNo and pageSize, 
+Msg:
+/getallstudents,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-18 18:36:09, Severity: E, Desc: No authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 18:36:48, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 18:36:48, Severity: I, Desc: Students Data fetched with pageNo and pageSize, 
+Msg:
+/getallstudents,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-18 18:37:35, Severity: E, Desc: No authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-18 18:42:43, Severity: E, Desc: No header, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 18:44:19, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-18 18:45:29, Severity: E, Desc: connect ETIMEDOUT 74.125.24.108:587, 
+Msg:
+/sendstudentresultpdftomail,
+ErrStack:
+Error: connect ETIMEDOUT 74.125.24.108:587
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16)
+
+
+UserId: 3, Time: 2021-01-18 18:51:08, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 18:52:18, Severity: I, Desc: Mail sent, 
+Msg:
+/sendstudentresultpdfTomail,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 19:04:19, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-18 19:05:02, Severity: I, Desc: Mail sent, 
+Msg:
+/sendstudentresultpdfTomail,
+ErrStack:
+null
+
+
