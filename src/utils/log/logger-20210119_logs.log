@@ -1,0 +1,49 @@
+UserId: null, Time: 2021-01-19 19:28:22, Severity: E, Desc: No authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-19 19:28:48, Severity: I, Desc: LoginSuccessful, 
+Msg:
+/login,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-19 19:29:09, Severity: E, Desc: No authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-19 19:29:23, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-19 19:29:24, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-19 19:32:21, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-19 19:32:22, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
