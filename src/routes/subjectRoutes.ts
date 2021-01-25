@@ -8,8 +8,10 @@ import {
   getAllSubjects,
   getSubjectById,
 } from '../controllers/subjectController';
+
 import { auth } from '../middleware/authMiddleware';
 import { admin } from '../middleware/adminMiddleware';
+import { upload } from '../middleware/multerMiddleware';
 
 //routes
 router.route('/').post(auth, admin, insertSubject).get(auth, getAllSubjects);
