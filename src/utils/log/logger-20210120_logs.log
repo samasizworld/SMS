@@ -1,0 +1,105 @@
+UserId: 3, Time: 2021-01-20 17:19:38, Severity: E, Desc: Token expires, 
+Msg:
+Error at AuthMiddleware(),
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:19:49, Severity: I, Desc: LoginSuccessful, 
+Msg:
+/login,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:20:13, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-20 17:20:14, Severity: E, Desc: "invalid input syntax for type uuid: \"32576124-4915-11eb-ba59-cf80603b878d;drop table members;--\"", 
+Msg:
+/executeQuery at repo,
+ErrStack:
+"SequelizeDatabaseError: invalid input syntax for type uuid: \"32576124-4915-11eb-ba59-cf80603b878d;drop table members;--\"\n    at Query.formatError (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:386:16)\n    at Query.run (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:87:18)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+
+
+UserId: 3, Time: 2021-01-20 17:20:14, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:26:04, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:26:04, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-20 17:27:07, Severity: E, Desc: No header, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:28:04, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:28:04, Severity: I, Desc: student Details found by id with no result, 
+Msg:
+/getresultbystudentid,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:29:49, Severity: E, Desc: Token expires, 
+Msg:
+Error at AuthMiddleware(),
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:30:07, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:30:07, Severity: I, Desc: Student Created, 
+Msg:
+/createStudent,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-20 17:31:41, Severity: E, Desc: No header, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-20 17:32:10, Severity: E, Desc: Token expires, 
+Msg:
+Error at AuthMiddleware(),
+ErrStack:
+null
+
+

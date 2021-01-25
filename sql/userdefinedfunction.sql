@@ -94,7 +94,7 @@ $$
 language plpgsql; 
 
 
-select stu.guid ,stu.studentemail,stu.firstname,(json_object_agg(coalesce(sub.subjectname,'a'), stusub.marks)::jsonb || json_object_agg('score',stu.result)::jsonb )::json from 
+select stu.guid ,stu.studentemail,stu.firstname,(json_object_agg(coalesce(sub.subjectname,'a'), stusub.marks)::jsonb || json_object_agg('score',stu.result)::jsonb )::json as results from 
     (select studentid,firstname ,guid ,result,studentemail from students where datedeleted is null) as stu
     left join (studentsubjects as stusub  inner join subjects as sub on sub.subjectid =stusub.subjectid and stusub.datedeleted is null ) 
     on stu.studentid = stusub.studentid
@@ -264,4 +264,6 @@ language plpgsql;
 
 -- 
 select stusub('0fe2a20c-4915-11eb-ba57-7f663eec4970','[{"subjectId": "a25e881c-4938-11eb-98fd-8bd47dd23175","status": "0","marks": 55},{"subjectId": "fac3d750-492e-11eb-98f3-a32c9105e8f4","status": "0","marks": 65}]');
+
+
 

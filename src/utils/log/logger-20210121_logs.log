@@ -1,0 +1,315 @@
+UserId: 3, Time: 2021-01-21 11:46:51, Severity: E, Desc: Token expires, 
+Msg:
+Error at AuthMiddleware(),
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:46:59, Severity: I, Desc: LoginSuccessful, 
+Msg:
+/login,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:47:35, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:47:35, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-21 11:47:35, Severity: E, Desc: "invalid input syntax for type uuid: \"32576124-4915-11eb-ba59-cf80603b878d;drop table members;--\"", 
+Msg:
+/executeQuery at repo,
+ErrStack:
+"SequelizeDatabaseError: invalid input syntax for type uuid: \"32576124-4915-11eb-ba59-cf80603b878d;drop table members;--\"\n    at Query.formatError (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:386:16)\n    at Query.run (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:87:18)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+
+
+UserId: 3, Time: 2021-01-21 11:54:44, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:54:46, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:56:48, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:56:48, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:58:20, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-21 11:58:21, Severity: E, Desc: "invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members;\"", 
+Msg:
+/executeQuery at repo,
+ErrStack:
+"SequelizeDatabaseError: invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members;\"\n    at Query.formatError (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:386:16)\n    at Query.run (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:87:18)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+
+
+UserId: 3, Time: 2021-01-21 11:58:21, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 11:59:29, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-21 11:59:29, Severity: E, Desc: "invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members; --\"", 
+Msg:
+/executeQuery at repo,
+ErrStack:
+"SequelizeDatabaseError: invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members; --\"\n    at Query.formatError (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:386:16)\n    at Query.run (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:87:18)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+
+
+UserId: 3, Time: 2021-01-21 11:59:29, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:06:42, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-21 12:06:43, Severity: E, Desc: "invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members; --\"", 
+Msg:
+/executeQuery at repo,
+ErrStack:
+"SequelizeDatabaseError: invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members; --\"\n    at Query.formatError (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:386:16)\n    at Query.run (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:87:18)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+
+
+UserId: 3, Time: 2021-01-21 12:06:43, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:11:14, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: null, Time: 2021-01-21 12:11:14, Severity: E, Desc: "invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members; --\"", 
+Msg:
+/executeQuery at repo,
+ErrStack:
+"SequelizeDatabaseError: invalid input syntax for type uuid: \"5d1a0cfe-4915-11eb-ba5b-bfb5b77e3c0a;drop table members; --\"\n    at Query.formatError (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:386:16)\n    at Query.run (C:\\Users\\viasi\\Desktop\\SMS\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:87:18)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+
+
+UserId: 3, Time: 2021-01-21 12:11:14, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:15:00, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:15:01, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:19:09, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:19:09, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:24:18, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:24:18, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:35:28, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:35:29, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:36:27, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:36:27, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:41:50, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:41:50, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:42:37, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:42:38, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:43:43, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:43:44, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:49:21, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:49:21, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:52:22, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 12:52:22, Severity: I, Desc: LinkedStudentSubjectDone, 
+Msg:
+/linkstudentsubject,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 16:10:48, Severity: E, Desc: Token expires, 
+Msg:
+Error at AuthMiddleware(),
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 16:11:09, Severity: I, Desc: LoginSuccessful, 
+Msg:
+/login,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 16:11:49, Severity: I, Desc: Authorized, 
+Msg:
+/auth,
+ErrStack:
+null
+
+
+UserId: 3, Time: 2021-01-21 16:11:49, Severity: I, Desc: Students Data fetched with pageNo and pageSize, 
+Msg:
+/getallstudents,
+ErrStack:
+null
+
+
